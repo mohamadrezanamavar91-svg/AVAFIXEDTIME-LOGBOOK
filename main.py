@@ -29,7 +29,7 @@ jobs:
           sudo apt update
           sudo apt install -y git zip unzip autoconf libtool pkg-config zlib1g-dev libncurses5-dev \
             libncursesw5-dev libtinfo5 cmake libffi-dev libssl-dev build-essential libltdl-dev ccache \
-            libjpeg-dev libpng-dev libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev
+            libjpeg-dev libpng-dev
 
       - name: Install Python Build Tools
         run: |
@@ -50,6 +50,7 @@ jobs:
           buildozer -v android debug
 
       - name: Upload APK Artifact
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: AvaFix-Crew-APK
