@@ -6,13 +6,13 @@ source.dir = .
 source.include_exts = py,png,jpg,jpeg,kv,atlas,db,html,css,js
 version = 1.0
 
-requirements = python3,kivy,flask,requests,urllib3,jinja2,werkzeug,certifi
-
+# وابستگی‌های دقیق و سازگار با اندروید
+requirements = python3,kivy==2.3.0,requests,urllib3,certifi,chardet,idna
 
 orientation = portrait
 fullscreen = 0
 
-# Android specific
+# تنظیمات NDK و SDK
 android.api = 33
 android.minapi = 21
 android.ndk = 25b
