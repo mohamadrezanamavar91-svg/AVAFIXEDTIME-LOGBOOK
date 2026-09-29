@@ -6,7 +6,8 @@ source.dir = .
 source.include_exts = py,png,jpg,jpeg,kv,atlas,db,html,css,js
 version = 1.0
 
-requirements = python3,kivy,flask,requests,urllib3,jinja2,werkzeug
+requirements = python3,kivy==2.3.0,requests,urllib3,certifi
+
 
 orientation = portrait
 fullscreen = 0
