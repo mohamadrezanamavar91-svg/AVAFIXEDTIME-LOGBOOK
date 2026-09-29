@@ -13,10 +13,10 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Set up Python
+      - name: Set up Python 3.10
         uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: "3.10"
 
       - name: Set up Java 17
         uses: actions/setup-java@v4
@@ -27,20 +27,21 @@ jobs:
       - name: Install System Dependencies
         run: |
           sudo apt update
-          sudo apt install -y git zip unzip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libtinfo5 cmake libffi-dev libssl-dev build-essential wget
+          sudo apt install -y git zip unzip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libtinfo5 cmake libffi-dev libssl-dev build-essential libltdl-dev ccache
 
-      - name: Install Buildozer and Cython
+      - name: Install Python Build Tools
         run: |
-          pip install --upgrade pip setuptools wheel
-          pip install Cython==0.29.36 buildozer
+          python -m pip install --upgrade pip setuptools wheel
+          python -m pip install "Cython<3.0.0" buildozer
 
-      - name: Pre-download Android NDK (Bypass 404 Error)
+      - name: Pre-download Android NDK
         run: |
           mkdir -p /home/runner/.buildozer/android/platform
           cd /home/runner/.buildozer/android/platform
-          wget -q https://dl.google.com/android/repository/android-ndk-r25b-linux.zip -O android-ndk-r25b-linux.zip
-          unzip -q android-ndk-r25b-linux.zip
-          mv android-ndk-r25b android-ndk-r25b
+          if [ ! -d "android-ndk-r25b" ]; then
+            wget -q https://dl.google.com/android/repository/android-ndk-r25b-linux.zip
+            unzip -q android-ndk-r25b-linux.zip
+          fi
 
       - name: Build with Buildozer
         run: |
