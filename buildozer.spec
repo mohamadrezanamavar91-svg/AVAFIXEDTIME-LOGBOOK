@@ -5,7 +5,8 @@ package.domain = org.crew
 source.dir = .
 source.include_exts = py,png,jpg,kv,atlas
 version = 1.0.0
-requirements = python3,flask,pyjnius
+requirements = python3,kivy,flask,pyjnius,requests
+
 orientation = portrait
 fullscreen = 0
 android.permissions = INTERNET,WRITE_EXTERNAL_STORAGE,READ_EXTERNAL_STORAGE
